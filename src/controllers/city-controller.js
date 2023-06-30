@@ -4,7 +4,7 @@ const cityService = new CityService();
 
 const create = async (req, res) => {
   try {
-    const res = await cityService.createCity(req.body);
+    const city = await cityService.createCity(req.body);
     return res.status(201).json({
       data: city,
       success: true,
@@ -25,7 +25,8 @@ const create = async (req, res) => {
 // DELETE -> /city/:id
 const destroy = async (req, res) => {
   try {
-    const res = await cityService.destroyCity(req.params.id);
+    const city = await cityService.destroyCity(req.params.id);
+    console.log("debugging: ", city);
     return res.status(201).json({
       data: city,
       success: true,
@@ -43,12 +44,11 @@ const destroy = async (req, res) => {
   }
 };
 
-// DELETE -> /city/:id
 const get = async (req, res) => {
   try {
-    const res = await cityService.getCity(req.params.id);
+    const response = await cityService.getCity(req.params.id);
     return res.status(201).json({
-      data: city,
+      data: response,
       success: true,
       message: "successfully fetched a city",
       err: {},
@@ -66,7 +66,7 @@ const get = async (req, res) => {
 // PATCH -> /city/:id -> req.body
 const update = async (req, res) => {
   try {
-    const res = await cityService.getUpdateCity(req.params.id, req.body);
+    const city = await cityService.updateCity(req.params.id, req.body);
     return res.status(201).json({
       data: city,
       success: true,
@@ -83,7 +83,7 @@ const update = async (req, res) => {
   }
 };
 
-module.exposts = {
+module.exports = {
   create,
   destroy,
   get,
