@@ -15,7 +15,6 @@ const setupAndStartServer = async () => {
   app.use("/api", ApiRoutes); // outermost level mapping.
 
   app.listen(3000, () => {
-    const cityRepository = new CityRepository();
 
     console.log(`Server started @port=${PORT}`);
   });
