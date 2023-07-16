@@ -5,6 +5,9 @@ const ApiRoutes = require("./routes/index");
 
 const bodyParser = require("body-parser");
 const CityRepository = require("./repository/city-repository");
+const db = require("./models");
+
+const { City, Airports } = require("./models/index");
 
 const setupAndStartServer = async () => {
   const app = express();
@@ -14,9 +17,12 @@ const setupAndStartServer = async () => {
 
   app.use("/api", ApiRoutes); // outermost level mapping.
 
-  app.listen(3000, () => {
-
+  app.listen(3000, async () => {
     console.log(`Server started @port=${PORT}`);
+
+
+    // console.log(airports);
+    // db.sequelize.sync({ alter: true });
   });
 };
 

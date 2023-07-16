@@ -12,6 +12,16 @@ class CityRepository {
     }
   }
 
+  async createCities(names) {
+    try {
+      const city = await City.bulkCreate(names);
+      return city;
+    } catch (error) {
+      console.log("something went wrong in repository layer");
+      throw { error };
+    }
+  }
+
   async deleteCity(cityId) {
     try {
       await City.destroy({
@@ -52,7 +62,6 @@ class CityRepository {
   }
 
   async getAll({ name }) {
-    console.log(`value of name is: ${name}`);
     try {
       if (name) {
         const city = await City.findAll({
@@ -68,6 +77,23 @@ class CityRepository {
         const city = await City.findAll();
         return city;
       }
+    } catch (error) {
+      throw { error };
+    }
+  }
+
+  async airports({ name }) {
+    console.log("in repository: ", name);
+    try {
+      const city = await City.findOne({ where: { name: name } });
+      console.log("city: ", city);
+
+      const airports = await city.getAirports();
+
+      if (!airports || airports.length == 0) {
+        throw {error}
+      }
+      return airports;
     } catch (error) {
       throw { error };
     }
