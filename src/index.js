@@ -8,6 +8,7 @@ const CityRepository = require("./repository/city-repository");
 const db = require("./models");
 
 const { City, Airports } = require("./models/index");
+const { Airplane } = require("./models/index");
 
 const setupAndStartServer = async () => {
   const app = express();
@@ -20,9 +21,14 @@ const setupAndStartServer = async () => {
   app.listen(3000, async () => {
     console.log(`Server started @port=${PORT}`);
 
-
     // console.log(airports);
-    // db.sequelize.sync({ alter: true });
+    if (process.env.SYNC_DB) {
+      db.sequelize.sync({ alter: true });
+    }
+
+    await Airplane.create({
+      modelNumber: "Bombardier RCJ",
+    });
   });
 };
 
