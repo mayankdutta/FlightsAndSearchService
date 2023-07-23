@@ -1,8 +1,8 @@
-const { CityRepositry } = require("../repository/index");
+const { CityRepository } = require("../repository/index");
 
 class CityService {
   constructor() {
-    this.cityRepository = new CityRepositry();
+    this.cityRepository = new CityRepository();
   }
 
   async createCity({ name }) {
@@ -64,7 +64,7 @@ class CityService {
   }
 
   async airports(name) {
-    console.log('in service layer: ', name)
+    console.log("in service layer: ", name);
     try {
       const city = await this.cityRepository.airports({ name: name });
       return city;
