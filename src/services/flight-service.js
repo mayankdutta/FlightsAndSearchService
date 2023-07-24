@@ -26,7 +26,7 @@ class FlightService {
 
       if (!flight) {
         throw { error: "Service layer: no such flight" };
-      }
+      } 
 
       return flight;
     } catch (error) {
@@ -53,7 +53,7 @@ module.exports = FlightService;
 
 /**
  * {
- * FlightNumber
+ * flightNumber
  * airplaneId
  * departureAirplaneId
  * arrivalAirplaneId
