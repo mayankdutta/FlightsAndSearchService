@@ -5,7 +5,7 @@ const airportService = new AirportService();
 const create = async (req, res) => {
   try {
     const response = await airportService.create(req.body);
-    return res.status(500).json({
+    return res.status(200).json({
       data: response,
       success: true,
       err: {},
