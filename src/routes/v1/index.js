@@ -20,10 +20,13 @@ router.get("/city", CityController.getAll);
 router.post(
   "/flights",
   flightMiddlewares.validateCreateFlight,
-  FlightController.create
+  FlightController.create,
 ); // check online docs for the REST conventions.
-router.get("/flights", FlightController.getAll);
 
 router.post("/airports", AirportController.create);
+
+router.get("/flights", FlightController.getAll);
+router.get("/flights/:flightId", FlightController.get);
+router.patch("/flights/:flightId", FlightController.update);
 
 module.exports = router;

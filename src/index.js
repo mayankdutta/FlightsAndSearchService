@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const CityRepository = require("./repository/city-repository");
 const db = require("./models");
 
+
 const { City, Airports } = require("./models/index");
 const { Airplane } = require("./models/index");
 

@@ -60,6 +60,33 @@ class FlightRepository {
       throw { error };
     }
   }
+
+  async getFlight(flightId) {
+    try {
+      const flight = await Flights.findByPk(flightId);
+      return flight;
+    } catch (error) {
+      console.log("something went wrong in repository layer");
+      throw { error };
+    }
+  }
+
+  async updateFlight(flightId, data) {
+    try {
+      const response = await Flights.update(data, {
+        where: {
+          id: flightId
+        }
+      })
+
+      console.log('upon successful data insertion: ', flightId, data);
+      return response; 
+    }
+    catch (error) {
+      console.log('something went wrong in flight repository layer', error); 
+      throw {error}; 
+    }
+  }
 }
 
 module.exports = FlightRepository;
